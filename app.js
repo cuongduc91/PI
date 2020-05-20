@@ -1,98 +1,14 @@
-/*
-Spiel Regels:
-- Es gibt 2 Spieler, jeder hat die Entscheidung weiter würfeln oder die Punkte speichern.
-- In seinem Turn darf der Spieler viel würfeln wie er möchte. Jeder Round wird in der Gesamtpunkte hinzugefügt.
-- In dem Fall, der Spieler hat doppel 1 gewürfen, er wird seine Gesamtepunkte verloren.
-- Der Spieler kann natürlich sein Würfeln Round entweder bei Hold Button klicken halten, 
-    das bedeutet seine Temporal Punkte wird in der Gesamtepunktehinzugefügt. Dann bekommt der nächste Spieler sein Turn.
-- Wer hat 200 Punkte erreicht wird gewinnen. 
-*/
+const express = require("express");
+const app = express();
+const mongoose = require('mongoose');
+app.set('view engine','ejs');
 
-var scores, roundScore, activePlayer, gamePlaying;
+app.use(express.static(__dirname + "/public"));
+app.get('/', (req, res) => {
+    res.render('index');
+  });
 
-init();
+// app.listen(process.env.PORT);
 
+app.listen(3000);
 
-document.querySelector('.btn-roll').addEventListener('click', function() {
-    if(gamePlaying) {
-        // 1. Generator des zufälligen Nummer
-        var dice = Math.floor(Math.random() * 6) + 1;
-
-        //2. Ergebnis darstellen
-        var diceDOM = document.querySelector('.dice');
-        diceDOM.style.display = 'block';
-        diceDOM.src = 'dice-' + dice + '.png';
-
-
-        //3. Aktualisieren die Round Punkte wenn die gewürfelten Nummer nicht 1 sind
-        if (dice !== 1) {
-            //Add score
-            roundScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
-        } else {
-            //Nächster Spieler
-            nextPlayer();
-        }
-    }    
-});
-
-
-document.querySelector('.btn-hold').addEventListener('click', function() {
-    if (gamePlaying) {
-        // Addieren Round Punkte zur Gesamtepunkte
-        scores[activePlayer] += roundScore;
-
-        // Aktualisieren die User Schnittstelle
-        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-
-        // Prüf ob der Spieler gewonnen
-        if (scores[activePlayer] >= 100) {
-            document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
-            document.querySelector('.dice').style.display = 'none';
-            document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
-            document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
-            gamePlaying = false;
-        } else {
-            //Next player
-            nextPlayer();
-        }
-    }
-});
-
-
-function nextPlayer() {
-    //Next player
-    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-    roundScore = 0;
-
-    document.getElementById('current-0').textContent = '0';
-    document.getElementById('current-1').textContent = '0';
-
-    document.querySelector('.player-0-panel').classList.toggle('active');
-    document.querySelector('.player-1-panel').classList.toggle('active');
-
-    document.querySelector('.dice').style.display = 'none';
-}
-
-document.querySelector('.btn-new').addEventListener('click', init);
-
-function init() {
-    scores = [0, 0];
-    activePlayer = 0;
-    roundScore = 0;
-    gamePlaying = true;
-    
-    document.querySelector('.dice').style.display = 'none';
-
-    document.getElementById('score-0').textContent = '0';
-    document.getElementById('score-1').textContent = '0';
-    document.getElementById('current-0').textContent = '0';
-    document.getElementById('current-1').textContent = '0';
-    document.getElementById('name-0').textContent = 'Spieler 1';
-    document.getElementById('name-1').textContent = 'Spieler 2';
-    document.querySelector('.player-0-panel').classList.remove('winner');
-    document.querySelector('.player-1-panel').classList.remove('winner');
-    document.querySelector('.player-0-panel').classList.remove('active');
-    document.querySelector('.player-1-panel').classList.remove('active');
-    document.querySelector('.player-0-panel').classList.add('active');
-}
