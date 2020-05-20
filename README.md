@@ -10,8 +10,8 @@ Das ist ein Projekt für das Fach - Projekt Informatik
 
 # zur Heroku Bereistellung 
 * Befehl
-  $ git add .
-  $ git commit -m "Added a Procfile."
-  $ heroku login
-  $ heroku create
-  $ git push heroku master
+  * $ git add .
+  * $ git commit -m "Added a Procfile."
+  * $ heroku login
+  * $ heroku create
+  * $ git push heroku master
