@@ -2,14 +2,14 @@
 Das ist ein Projekt für das Fach - Projekt Informatik
 
 # Dependencies
-+ Nodejs installieren: https://nodejs.org/en/download/
-+ Befehl
+Nodejs installieren: https://nodejs.org/en/download/
+Befehl:
   npm install package.json
-+ Um localhost durchzuführen
+Um localhost durchzuführen
   node app.js
 
 # zur Heroku Bereistellung 
-+ Befehl
+Befehl
   $ git add .
   $ git commit -m "Added a Procfile."
   $ heroku login
