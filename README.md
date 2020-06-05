@@ -1,7 +1,7 @@
 # PI
 Das ist ein Projekt für das Fach - Projekt Informatik
 
-# Dependencies
+## Dependencies
 * Nodejs installieren: https://nodejs.org/en/download/
 * Befehl:
 ```
@@ -11,7 +11,7 @@ Das ist ein Projekt für das Fach - Projekt Informatik
 ```
   node app.js
 ```
-# zur Heroku Bereistellung 
+## zur Heroku Bereistellung 
 * Befehl
 ```
    $ git add .
