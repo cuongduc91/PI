@@ -4,10 +4,13 @@ Das ist ein Projekt für das Fach - Projekt Informatik
 # Dependencies
 * Nodejs installieren: https://nodejs.org/en/download/
 * Befehl:
+```
   npm install package.json
+```
 * Um localhost durchzuführen
+```
   node app.js
-
+```
 # zur Heroku Bereistellung 
 * Befehl
 ```
