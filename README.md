@@ -2,7 +2,7 @@
 Das ist ein Projekt für das Fach - Projekt Informatik
 
 ## Dependencies
-* Nodejs installieren: https://nodejs.org/en/download/
+* [Nodejs installieren](https://nodejs.org/en/download/)
 * Befehl:
 ```
   npm install package.json
